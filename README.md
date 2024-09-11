@@ -64,3 +64,28 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## My Steps
+install laravel with breeze
+add code to app/providers/AppServiceProvider.php
+---
+use Illuminate\Support\Facades\Schema;
+Schema::defaultStringLength(191);
+---
+
+add role column in users
+---
+php artisan make:migration add_role_column_in_users --table=users
+---
+
+now code to database file
+up
+---
+{{ $table->integer('role')->default(0)->after('email') }}
+---
+down
+---
+{{$table->dropColumn('role')}}
+---
+
